@@ -28094,15 +28094,20 @@ document.addEventListener('DOMContentLoaded', function () {
       console.log('image loaded - '); //, ev.target.result)
       imgFile = ev.target.result;
 
-      var newImg = document.querySelector('#testImg'); //new Image()
-      //newImg.src = "_test5.jpg"//ev.target.result
+      //const newImg = document.querySelector('#testImg')
+      var newImg = new Image();
+      newImg.id = 'uploadedImg';
+      newImg.src = ev.target.result;
       document.body.appendChild(newImg);
-      console.log(newImg, newImg.width, newImg.height);
+      //console.log(newImg, newImg.width, newImg.height)
 
-      newImg.adjustSize = adjustSize.bind(newImg);
-      newImg.adjustSize(newImg.width, newImg.height);
-      console.log(newImg.width, newImg.height);
+      //newImg.adjustSize = adjustSize.bind(newImg)
+      //newImg.adjustSize(newImg.width, newImg.height)
+      //console.log(newImg.width, newImg.height)
       //input = x
+
+      var toUpload = document.querySelector('#uploadedImg');
+      console.log('toUpload\n', toUpload);
 
       input = tf.tidy(function () {
         var x = tf.fromPixels(newImg);
@@ -28117,7 +28122,7 @@ document.addEventListener('DOMContentLoaded', function () {
       });
       console.log('input', input);
 
-      run();
+      //run()
     };
 
     r.readAsDataURL(ev.target.files[0]);
