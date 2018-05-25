@@ -27920,8 +27920,10 @@ var run = function () {
             t1 = performance.now();
 
             console.log("YOLO inference took " + (t1 - t0) + " milliseconds.");
+            console.log(boxes);
 
             boxes.forEach(function (box) {
+              console.log('found box', box);
               var top = box.top,
                   left = box.left,
                   bottom = box.bottom,
@@ -27936,7 +27938,7 @@ var run = function () {
             //await tf.nextFrame();
             //}
 
-          case 12:
+          case 13:
           case "end":
             return _context2.stop();
         }
@@ -28094,10 +28096,10 @@ document.addEventListener('DOMContentLoaded', function () {
       console.log('image loaded - '); //, ev.target.result)
       imgFile = ev.target.result;
 
-      //const newImg = document.querySelector('#testImg')
-      var newImg = new Image();
-      newImg.id = 'uploadedImg';
-      newImg.src = ev.target.result;
+      var newImg = document.querySelector('#testImg8');
+      //var newImg = new Image();
+      //newImg.id = 'uploadedImg';
+      //newImg.src = ev.target.result;
       document.body.appendChild(newImg);
       //console.log(newImg, newImg.width, newImg.height)
 
@@ -28106,8 +28108,8 @@ document.addEventListener('DOMContentLoaded', function () {
       //console.log(newImg.width, newImg.height)
       //input = x
 
-      var toUpload = document.querySelector('#uploadedImg');
-      console.log('toUpload\n', toUpload);
+      //var toUpload = document.querySelector('#uploadedImg');
+      //console.log('toUpload\n', toUpload);
 
       input = tf.tidy(function () {
         var x = tf.fromPixels(newImg);
@@ -28122,7 +28124,7 @@ document.addEventListener('DOMContentLoaded', function () {
       });
       console.log('input', input);
 
-      //run()
+      run();
     };
 
     r.readAsDataURL(ev.target.files[0]);
